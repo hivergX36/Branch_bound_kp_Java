@@ -29,6 +29,32 @@ public class Knapsack {
     }
 
 
+    public void solve_knapsack(){
+        Array List<Node> queue = new ArrayList<Node>();
+        Node u = new Node(0,0,0,-1);
+        float max_profit = 0; 
+        Node v; 
+
+
+        queue.add(u);
+
+        While(queue.empty() == false){
+           v = queue.remove(0);
+
+           if (v.level == items.size() - 1){
+                continue;
+           }
+
+           u = new Node(v)
+            
+        
+
+
+        }
+
+    }
+
+
 
     
 }
