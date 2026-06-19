@@ -30,9 +30,15 @@ public class Knapsack {
 
 
     public void solve_knapsack(){
+        """
+                Knapsack problem using branch and bound method with Bfs. 
+                Inputs Nodes: (weight, profit, bound, level)
+        """
         Array List<Node> queue = new ArrayList<Node>();
-        Node u = new Node(0,0,0,-1);
+        int number_items = items.size();
+        Node u = new Node(0,0,0,-1,5),;
         float max_profit = 0; 
+        ArrayList<Integer> best_solution = new ArrayList<Integer>();
         Node v; 
 
 
@@ -44,15 +50,46 @@ public class Knapsack {
            if (v.level == items.size() - 1){
                 continue;
            }
+ """
+         Node(float weight, float profit, float bound, int level)
+         """;
+           u = new Node(0,0,0,0,5)
+           u.Level = v.level + 1 
+           u.weight = v.weight + items.get(u.level).weight;
+           u.profit = v.profit + items.get(u.level).profit;
+           u.bound = this.define_bound(u);
+           u.solution = v.solution;
+           u.solution[u.level] = 1
 
-           u = new Node(v)
-            
-        
 
+           if (u.weight <= capacity && u.profit > max_profit){
+                max_profit = u.profit;
+                best_solution = u.solution;
+           }
 
+           if (u.bound > max_profit){
+                queue.add(u);
+           }
+
+           v.level = v.level + 1;
+           v.weight = v.weight;
+           v.profit = v.profit;
+           v.bound = this.define_bound(v);
+           v.solution = v.solution;          
+
+           if (v.bound > max_profit){
+                queue.add(v);
+           }
         }
 
+        System.out.println("the best solution is: ", best_solution)
+        System.out.println("The max profit is: ", max_profit)
+
+
+
+
     }
+
 
 
 
